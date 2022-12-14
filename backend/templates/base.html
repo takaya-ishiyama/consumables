@@ -1,0 +1,15 @@
+{% extends "frontend/pages/index.tsx" %}
+frontend/pages/index.tsx
+
+{% block head %}
+  ... the content you want to add to the beginning of <head> tag ...
+  {{ block.super }}
+  ... the content you want to add to the end of <head> tag ...
+{% endblock %}
+
+
+{% block body %}
+  ... the content you want to add to the beginning of <body> tag ...
+  {{ block.super }}
+  ... the content you want to add to the end of <body> tag ...
+{% endblock %}
