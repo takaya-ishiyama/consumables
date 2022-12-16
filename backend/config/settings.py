@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -140,9 +140,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     ]
 # }
 
-NEXTJS_SETTINGS = {
-    "nextjs_server_url": "http://127.0.0.1:3000",
-}
+# NEXTJS_SETTINGS = {
+#     "nextjs_server_url": "http://127.0.0.1:3000",
+# }
 
 AUTH_USER_MODEL = 'accounts.User'
 
