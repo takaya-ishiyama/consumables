@@ -1,20 +1,21 @@
 from django.views.generic import TemplateView
-from .models import Items
+from .models import User
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import ItemSerializer
+from .serializers import UserSerializer
 from rest_framework.parsers import JSONParser
 from django.http import HttpResponse, JsonResponse
+from rest_framework import viewsets, filters, generics
 
-@csrf_exempt
-def item_list(request):
+
+def user_list(request):
     if request.method == 'GET':
-        items = Items.objects.all()
-        serializer = ItemSerializer(items, many=True)
+        items = User.objects.all()
+        serializer = UserSerializer(items, many=True)
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = ItemSerializer(data=data)
+        serializer = UserSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
@@ -22,19 +23,19 @@ def item_list(request):
 
 
 @csrf_exempt
-def item_detail(request, pk):
+def user_detail(request, pk):
     try:
-        item = Items.objects.get(pk=pk)
-    except Items.DoesNotExist:
+        item = User.objects.get(pk=pk)
+    except User.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        serializer = ItemSerializer(item)
+        serializer = UserSerializer(item)
         return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
-        serializer = ItemSerializer(item, data=data)
+        serializer = UserSerializer(item, data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)

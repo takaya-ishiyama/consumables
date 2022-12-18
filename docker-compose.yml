@@ -15,8 +15,7 @@ services:
     volumes:
       - ./nginx/logs/nginx/:/var/log/nginx/
       - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
-      - ./toram/static:/var/www/static/
-      - ./toram/media:/var/www/media/
+      - ./backend/static:/var/www/static/
     depends_on:
       - django
 
@@ -26,10 +25,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
-    volumes: ./frontend:/frontend/
+    volumes:
+      - ./frontend:/frontend/
     command: yarn dev
-    depends_on:
-      - backend
 
   django:
     build:
@@ -37,10 +35,14 @@ services:
       dockerfile: Dockerfile
     command: 'sh /backend/start-django.sh'
     env_file: ./backend/.django_env
+    environment:
+      DATABASE_HOST: db
     expose:
       - "8001"
     volumes:
       - ./backend:/backend/
+    depends_on:
+      - db
 
   db:
     image: postgres:latest
