@@ -26,9 +26,9 @@ from rest_framework import routers
 # defaultRouter.register(r'user',UserViewSet)
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('', include('consumables.urls')),
-    path(r'account/', include('accounts.urls')),
+    path('admin/', admin.site.urls),
+    path('api/', include('consumables.urls')),
+    path(r'account/api/', include('accounts.urls')),
     # path("", include("django_nextjs.urls")),
     # path('api/',include(defaultRouter.urls)),
 ]

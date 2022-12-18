@@ -7,9 +7,7 @@ from . import apis
 
 app_name='accounts'
 urlpatterns=[
-    # path(r'register/', views.createuser, name='register'),
-    # path(r"register/", views.register, name="register"),
-    # path(r'login/', auth_views.LoginView.as_view(template_name="account/login.html"), name="login"),
-    # path(r'logout/', auth_views.LogoutView.as_view(), name="logout"),
-    path('api/',apis.AccountApi.as_view()),
-]
+    path(r'', views.user_list),
+    path(r'<int:pk>/', views.user_detail),
+
+    ]
