@@ -8,7 +8,6 @@ app_name='consumables'
 urlpatterns=[
     path(r'', views.item_list),
     path(r'<int:pk>/', views.item_detail),
-    # path('api/', apis.api.as_view(), name = "api")
 ] 
 
 
